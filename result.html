@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-8">
+    <h2>Prediction Results</h2>
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h4 class="card-title">Predicted Occupancy Levels</h4>
+        <ul class="list-group">
+          <li class="list-group-item">Random Forest: <span class="fw-bold">{{ pred_rf }}</span></li>
+          <li class="list-group-item">LightGBM: <span class="fw-bold">{{ pred_lgbm }}</span></li>
+          <li class="list-group-item">MLP-ANN: <span class="fw-bold">{{ pred_mlp }}</span></li>
+        </ul>
+      </div>
+    </div>
+    <h5>Input Data</h5>
+    <table class="table table-striped">
+      {% for key, val in input.items() %}
+      <tr><th>{{ key.replace("_", " ") }}</th><td>{{ val }}</td></tr>
+      {% endfor %}
+    </table>
+    <a class="btn btn-primary" href="/predict">Try Another Prediction</a>
+    <a class="btn btn-secondary" href="/metrics">See Model Metrics</a>
+  </div>
+</div>
+{% endblock %}

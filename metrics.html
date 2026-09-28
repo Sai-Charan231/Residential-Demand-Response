@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Model Performance Metrics</h2>
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Model</th>
+      <th>MSE</th>
+      <th>RMSE</th>
+      <th>MAE</th>
+      <th>R2 Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for name, met in metrics.items() %}
+    <tr>
+      <td>{{ name }}</td>
+      <td>{{ met['MSE'] }}</td>
+      <td>{{ met['RMSE'] }}</td>
+      <td>{{ met['MAE'] }}</td>
+      <td>{{ met['R2'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a class="btn btn-primary" href="/predict">Predict Now</a>
+{% endblock %}
